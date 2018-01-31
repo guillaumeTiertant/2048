@@ -49,16 +49,16 @@ Grid {
                         texte.text = "";
                         break;
                     case 2:
-                        parent.color = "mediumpurple";//"#D4E0F7";
+                        parent.color = "mediumpurple";
                         break;
                     case 4:
-                        parent.color = "darkviolet";//#1258DC";
+                        parent.color = "darkviolet";
                         break;
                     case 8:
-                        parent.color = "royalblue";//"#EA202C";
+                        parent.color = "royalblue";
                         break;
                     case 16:
-                        parent.color = "deepskyblue";//"#FDED2A";
+                        parent.color = "deepskyblue";
                         break;
                     case 32:
                         parent.color = "cyan";

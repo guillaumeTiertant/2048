@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
     QQuickView view;
     view.resize(400, 800);
-    view.setMinimumSize(QSize(400,600));
+
     view.setResizeMode(QQuickView::SizeRootObjectToView);
 
     QQmlContext* ctx = view.rootContext();

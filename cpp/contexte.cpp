@@ -14,9 +14,6 @@ QStringList Contexte::game2048() const
 
 void Contexte::start()
 {
-
-    //    ProcessGame jeux(5);
-    //    setScore("0");
     updateGrid();
     updateContext();
 }
@@ -62,7 +59,6 @@ void Contexte::setContext(QQmlContext *context)
     m_context->setContextProperty("Context", this);
 }
 
-//int getScore() const;
 void Contexte::updateContext()
 {
     // Send the data to Qml
@@ -97,12 +93,11 @@ void Contexte::setGame2048(QStringList game2048)
 
 void Contexte::setDirection(QString direction)
 {
-    //    ------------
     jeux->MoveBlock(direction.toStdString());
     getGridForQML();
-    //            updateGrid();
+
     updateContext();
-    //    ----------
+
     if (m_direction == direction)
         return;
 
@@ -112,17 +107,7 @@ void Contexte::setDirection(QString direction)
 
 void Contexte::setNewGame(QString newGame)
 {
-    //setContext( ctx );
-
-    //        QQmlApplicationEngine engine;
-    //        QQmlContext* ctx = engine.rootContext();
-
-
-    // Set le ctx
-    //        setContext( ctx );
     start();
-
-
 
     if (m_newGame == newGame)
         return;
@@ -134,9 +119,6 @@ void Contexte::setNewGame(QString newGame)
 
 void Contexte::setScore(QString score)
 {
-    //    if (m_score == score)
-    //        return;
-
     m_score = score;
     emit scoreChanged(m_score);
 }
