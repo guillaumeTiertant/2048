@@ -1,5 +1,6 @@
 #include "processgame.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -41,26 +42,23 @@ ProcessGame::ProcessGame( int size = 5 )
 
 void ProcessGame::moveZeros(ligne& _ligne)
 {
-    //repère les indices des zeros.
-    vector <int> i_zeros;
-    int i = 0;
+   size_t sizeTotal = _ligne.size();
 
-    for ( int chiffre : _ligne)
-    {
+    auto it = _ligne.begin();
 
-        if ( chiffre == 0 )
-            i_zeros.insert( i_zeros.begin(), i);
-        i++;
-    }
-    //supprime les zeros
-    for ( int posZero : i_zeros )
+    while( it != _ligne.end() )
     {
-        _ligne.erase( _ligne.begin() + posZero );
+        it = find( it, _ligne.end(), 0);
+        if (it !=_ligne.end())
+        it = _ligne.erase(it);
     }
 
-    //reinsere les zeros au début
-    vector<int> nullVector ( i_zeros.size() , 0 );
-    _ligne.insert( _ligne.begin(), nullVector.begin(), nullVector.end() );
+    size_t zeroDeleted = sizeTotal - _ligne.size();
+
+    for ( size_t i = 0; i < zeroDeleted; i++ )
+    {
+        _ligne.insert( _ligne.begin(), 0 );
+    }
 }
 
 void ProcessGame::addNumber()
@@ -82,6 +80,7 @@ void ProcessGame::addNumber()
 
             j++;
         }
+
         j = 0;
         i++;
     }
@@ -247,10 +246,10 @@ void ProcessGame::creerGrilleJeu( int gridSize )
 
     grid left, up, right, down;
 
-    left.resize( grille.size(), vector<int>( grille.size(), 0 )  );
+    left.resize ( grille.size(), vector<int>( grille.size(), 0 )  );
     right.resize( grille.size(), vector<int>( grille.size(), 0 )  );
-    up.resize( grille.size(), vector<int>( grille.size(), 0 )  );
-    down.resize( grille.size(), vector<int>( grille.size(), 0 )  );
+    up.resize   ( grille.size(), vector<int>( grille.size(), 0 )  );
+    down.resize ( grille.size(), vector<int>( grille.size(), 0 )  );
 
     //repartie les indices des cases pour les traiter de la même
     //manière quelque soit le sens de déplacement.
@@ -267,9 +266,9 @@ void ProcessGame::creerGrilleJeu( int gridSize )
 
     }
 
-    i_move["up"] = up;
-    i_move["down"] = down;
-    i_move["left"] = left;
+    i_move["up"]    = up;
+    i_move["down"]  = down;
+    i_move["left"]  = left;
     i_move["right"] = right;
 
 }

@@ -1,5 +1,6 @@
 #ifndef CPPPROCESSGAME_H
 #define CPPPROCESSGAME_H
+
 #include <vector>
 #include <map>
 #include <string>
@@ -9,23 +10,30 @@
 typedef std::vector<int> ligne;
 typedef std::vector<ligne> grid;
 
+using std::map;
+using std::string;
+
 class ProcessGame
 {
 
 public:
-    void NewGame();
+
     ProcessGame();
     ProcessGame(int size);
-    void MoveBlock( std::string sens );
+
+    void NewGame();
+    void MoveBlock( string sens );
+
     grid getGrille() const;
-
-    std::map<std::string, grid> getMove() const;
-
     bool isGameOver() const;
 
+
+
     int getScore() const;
+    map< string, grid> getMove() const;
 
 private:
+
     void creerGrilleJeu(int gridSize);
 
     void fusionCase(ligne &_ligne);
@@ -36,12 +44,15 @@ private:
 
 
 protected:
+
     grid grille;
-    std::map< std::string, grid> i_move;
-    bool gameOver;
-    int numberOfZeros;
     int score;
+    bool gameOver;
+
+private:
+    int numberOfZeros;
     bool blockMoved;
+    map< string, grid> i_move;
 };
 
 #endif // CPPPROCESSGAME_H
